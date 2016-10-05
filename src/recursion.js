@@ -7,6 +7,7 @@
 // Example:  5! = 5 x 4 x 3 x 2 x 1 = 120
 // factorial(5);  // 120
 let factorial = function (n) {
+  let result = n;
   if (n === 0) {
     return 1;
   }
@@ -14,14 +15,22 @@ let factorial = function (n) {
     return null;
   }
   if (n > 1) {
-    n *= factorial(n - 1);
+    result *= factorial(n - 1);
   }
-  return n;
+  return result;
 };
 
 // 2. Compute the sum of an array of integers.
 // Example:  sum([1, 2, 3, 4, 5, 6]);  // 21
-const sum = function (array) {
+let sum = function (array, runSum = 0) {
+  const myArray = array.slice();
+  let currentSum = runSum;
+  if (myArray.length === 0) {
+    return currentSum;
+  }
+  const add = myArray.pop();
+  currentSum += add;
+  return sum(myArray, currentSum);
 };
 
 // 3. Sum all numbers in an array containing nested arrays.
