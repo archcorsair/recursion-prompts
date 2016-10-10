@@ -28,14 +28,27 @@ let sum = function (array, runSum = 0) {
   if (myArray.length === 0) {
     return currentSum;
   }
-  const add = myArray.pop();
+  const add = myArray.shift();
   currentSum += add;
   return sum(myArray, currentSum);
 };
 
 // 3. Sum all numbers in an array containing nested arrays.
 // Example: arraySum([1,[2,3],[[4]],5]); // 15
-const arraySum = function (array) {
+let arraySum = function (array, runSum = 0) {
+  const myArray = array.slice();
+  let currentSum = runSum;
+  if (myArray.length === 0) {
+    return currentSum;
+  }
+  if (Array.isArray(myArray[0])) {
+    currentSum += arraySum(myArray[0]);
+    myArray.shift();
+  } else {
+    const add = myArray.shift();
+    currentSum += add;
+  }
+  return arraySum(myArray, currentSum);
 };
 
 // 4. Check if a number is even.
