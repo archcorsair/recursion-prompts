@@ -52,7 +52,16 @@ let arraySum = function (array, runSum = 0) {
 };
 
 // 4. Check if a number is even.
-const isEven = function (n) {
+let isEven = function (n) {
+  if (n === 0 || n === 2) {
+    return true;
+  } else if (n > 2) {
+    return isEven(n - 2);
+  }
+  if (n < 0) {
+    return isEven(n + 2);
+  }
+  return false;
 };
 
 // 5. Sum all integers below a given integer.
